@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Pipenv (codecrafters-http-server-python)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Pipenv (codecrafters-http-server-python)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Poetry (codecrafters-http-server-python)" project-jdk-type="Python SDK" />
 </project>
