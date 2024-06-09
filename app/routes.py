@@ -18,6 +18,12 @@ def echo(request, *params):
     return response
 
 
+@route('GET /user-agent/?')
+def user_agent(request, *params):
+    agent = request.headers["user-agent"]
+    response = Response(request.connection, response_code=200, headers={"Content-Type": "text/plain"}, body=agent)
+    return response
+
 get_root = "GET /"
 get_echo = "GET /echo/([a-zA-Z0-9]+)/"
 
