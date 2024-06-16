@@ -74,5 +74,7 @@ def post_files(request, *params):
 
 
 if __name__ == "__main__":
-    app = WebServerApp(host=arguments.values.get("host"), port=arguments.values.get("port"))
+    app = WebServerApp(
+        host=arguments.values.get("host"), port=arguments.values.get("port")
+    )
     app.run()

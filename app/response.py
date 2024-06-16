@@ -31,10 +31,10 @@ class Response:
         header_lines = "\r\n".join(
             key + ": " + value for key, value in self.headers.items()
         )
-        output = (self.response_line + header_lines + "\r\n\r\n").encode('Latin-1') + self.body
+        output = (self.response_line + header_lines + "\r\n\r\n").encode(
+            "Latin-1"
+        ) + self.body
         self.connection.sendall(output)
-
 
     def __str__(self):
         return f"Response {self.response_line},  headers: {self.headers},  body: {self.body}"
-

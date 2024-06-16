@@ -32,5 +32,7 @@ class WebServerApp:
         while True:
             connection, address = server_socket.accept()  # wait for client
             request = Request(connection)
-            print(f"Accept connection from {address=} with {request.request_line}\nHeaders: {request.headers}")
+            print(
+                f"Accept connection from {address=} with {request.request_line}\nHeaders: {request.headers}"
+            )
             Dispatcher.dispatch(request)
