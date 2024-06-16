@@ -6,7 +6,13 @@ from app.request import Request
 
 
 class WebServerApp:
-    def __init__(self, host: str = "localhost", port: int = 4221, app_name: str = "WebServer", threads:int=10):
+    def __init__(
+        self,
+        host: str = "localhost",
+        port: int = 4221,
+        app_name: str = "WebServer",
+        threads: int = 10,
+    ):
         self.host = host
         self.port = port
         self.threads = threads
@@ -17,7 +23,10 @@ class WebServerApp:
         server_socket = socket.create_server((self.host, self.port), reuse_port=True)
         print("Server socket initialized")
         with ThreadPoolExecutor(max_workers=10) as executor:
-            request_futures = [executor.submit(self.request_processor, server_socket) for _ in range(self.threads)]
+            request_futures = [
+                executor.submit(self.request_processor, server_socket)
+                for _ in range(self.threads)
+            ]
 
     def request_processor(self, server_socket):
         print("Started")

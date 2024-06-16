@@ -6,6 +6,7 @@ from app.response import Response
 
 class Dispatcher:
     routes = {}
+
     @classmethod
     def add_route(cls, path, handler):
         cls.routes[path] = handler
@@ -29,10 +30,13 @@ class Dispatcher:
         result = Response(request, response_code=404)
         result.send()
 
+
 def route(path):
     print("route_start", path)
+
     def route_func_wit_path(func):
         print("decor star")
+
         def handler(*args, **kwargs):
             return func(*args, **kwargs)
 
@@ -40,6 +44,6 @@ def route(path):
         Dispatcher.add_route(path, handler)
         print("decor end")
         return handler
+
     print("route_end", path)
     return route_func_wit_path
-

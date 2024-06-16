@@ -6,10 +6,17 @@ class Request:
         self.connection = connection
         self.rfile = connection.makefile("r")
         self.request_line = self.rfile.readline()[:-1]
-        print(f"{self.request_line=}")
         self.cmd, self.path, self.query, self.version = self.parse_command()
         self.headers = self.read_headers()
         self.body = self.rfile.read(int(self.headers.get("content-length", 0)))
+        self.accept_encoding = (
+            [
+                encoding.strip()
+                for encoding in self.headers.get("accept-encoding").split(",")
+            ]
+            if "accept-encoding" in self.headers
+            else []
+        )
 
     def read_headers(self):
         headers = {}
