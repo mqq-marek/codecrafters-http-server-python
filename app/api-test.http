@@ -1,0 +1,7 @@
+### GET request to example server
+GET http://localhost:4221/files/hello
+
+###
+
+### GET request to example server
+GET http://localhost:4221/

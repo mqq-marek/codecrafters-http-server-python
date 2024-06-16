@@ -1,27 +1,53 @@
-
+import os
 import socket
 from concurrent.futures import ThreadPoolExecutor
 
-from app.routes import app_name
-from app.dispatcher import Dispatcher
-from app.request import Request
+from app import arguments
+from app.response import Response
+from app.dispatcher import route
+from app.web_server import WebServerApp
 
 
+@route("GET /")
+def root(request, *params):
+    response = Response(request.connection, response_code=200)
+    return response
 
-def request_processor(server_socket):
-    while True:
-        connection, address = server_socket.accept()  # wait for client
-        print(f"Accept {connection=}, {address=}")
-        request = Request(connection)
-        Dispatcher.dispatch(request)
 
-def main():
-    server_socket = socket.create_server(("localhost", 4221), reuse_port=True)
-    print(f"Starting server {app_name}")
-    with ThreadPoolExecutor(max_workers=10) as executor:
-        request_futures = [executor.submit(request_processor, server_socket) for _ in range(10)]
+@route('GET /echo/([a-zA-Z0-9]+)/?')
+def echo(request, *params):
+    print(f"Starting /echo, {params=}")
+    response = Response(request.connection, response_code=200, headers={"Content-Type": "text/plain"}, body=params[0])
+    return response
+
+
+@route('GET /user-agent/?')
+def user_agent(request, *params):
+    agent = request.headers.get("user-agent")
+    print(f"Starting /user-agent, {agent=}")
+    response = Response(request.connection, response_code=200, headers={"Content-Type": "text/plain"}, body=agent)
+    return response
+
+
+@route(r'GET /files/([\-._a-zA-Z0-9]+)/?')
+def files(request, *params):
+    print(f"Starting /files, {params=}")
+    folder = arguments.values["directory"]
+    if params:
+        file_name = params[0]
+        path_to_file = os.path.join(folder, file_name)
+        if os.path.exists(path_to_file):
+            with open(path_to_file, "rb") as f:
+                content = f.read()
+            response = Response(request.connection,
+                                response_code=200,
+                                headers={"Content-Type": "application/octet-stream",
+                                         "Content-Length": len(content)}, body=content)
+        else:
+            response = Response(request.connection, response_code=404)
+    return response
 
 
 if __name__ == "__main__":
-    print("Starting server", app_name)
-    main()
+    app = WebServerApp()
+    app.run()

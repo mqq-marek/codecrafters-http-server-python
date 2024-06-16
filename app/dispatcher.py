@@ -16,10 +16,14 @@ class Dispatcher:
         print(f"dispatcher: ", cmd_path, cls.routes)
         for key, value in cls.routes.items():
             match = re.fullmatch(key, cmd_path)
+            print(f"f{key=}, {cmd_path=}, {match=}, {type(match)=}, {value=}")
             if match:
-                print(match.groups())
                 args = list(match.groups())
-                result = value(request, *args)
+                try:
+                    result = value(request, *args)
+                except Exception as ex:
+                    result = Response(request.connection, response_code=503)
+                print(f"Result to send: {result}")
                 result.send()
                 return
         result = Response(request.connection, response_code=404)
