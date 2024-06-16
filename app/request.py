@@ -17,6 +17,7 @@ class Request:
             if "accept-encoding" in self.headers
             else []
         )
+        print(f"{self.accept_encoding}")
 
     def read_headers(self):
         headers = {}

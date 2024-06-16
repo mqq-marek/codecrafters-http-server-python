@@ -18,8 +18,6 @@ def root(request, *params):
 def echo(request, *params):
     print(f"Starting /echo, {params=}")
     headers = {"Content-Type": "text/plain"}
-    if request.accept_encoding  and "gzip" in request.accept_encoding:
-        headers["Content-Encoding"] = "gzip"
     response = Response(request, response_code=200, headers=headers, body=params[0])
     return response
 
@@ -49,7 +47,6 @@ def get_files(request, *params):
                 response_code=200,
                 headers={
                     "Content-Type": "application/octet-stream",
-                    "Content-Length": len(content),
                 },
                 body=content,
             )

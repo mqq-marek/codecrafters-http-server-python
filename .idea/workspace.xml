@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c30a7b4b-647b-4766-a463-8bdcde7e8de6" name="Changes" comment="" />
+    <list default="true" id="c30a7b4b-647b-4766-a463-8bdcde7e8de6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api-test.http" beforeDir="false" afterPath="$PROJECT_DIR$/app/api-test.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/request.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/request.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/response.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/response.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +31,9 @@
     <setting file="file://$USER_HOME$/Library/Caches/JetBrains/PyCharm2024.1/python_stubs/-1431526581/_io.py" root0="SKIP_INSPECTION" />
     <setting file="file:///opt/homebrew/Cellar/python@3.12/3.12.3/Frameworks/Python.framework/Versions/3.12/lib/python3.12/re/__init__.py" root0="SKIP_INSPECTION" />
     <setting file="file:///opt/homebrew/Cellar/python@3.12/3.12.3/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="HttpClientSelectedEnvironments">
+    <file url="jar://$APPLICATION_HOME_DIR$/plugins/restClient/lib/restClient.jar!/com/intellij/ws/rest/client/requests/collection/get-requests.http" environment="test" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -57,7 +66,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="HTTP Request.api-test | #2">
     <configuration name="api-test | GET request to example server" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/app/api-test.http" requestIdentifier="GET request to example server" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -135,8 +144,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
         <item itemvalue="HTTP Request.api-test | #2" />
+        <item itemvalue="Python.main" />
         <item itemvalue="HTTP Request.api-test | GET request to example server" />
         <item itemvalue="Python.arguments" />
         <item itemvalue="Python.routes" />
@@ -160,7 +169,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717876952100</updated>
       <workItem from="1717876954025" duration="14468000" />
-      <workItem from="1717957915672" duration="14671000" />
+      <workItem from="1717957915672" duration="18015000" />
     </task>
     <servers />
   </component>
@@ -169,7 +178,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/codecrafters_http_server_python$routes.coverage" NAME="routes Coverage Results" MODIFIED="1717957708466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
-    <SUITE FILE_PATH="coverage/codecrafters_http_server_python$main.coverage" NAME="main Coverage Results" MODIFIED="1718562185546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/codecrafters_http_server_python$main.coverage" NAME="main Coverage Results" MODIFIED="1718565606609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/codecrafters_http_server_python$arguments.coverage" NAME="arguments Coverage Results" MODIFIED="1718549236610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
   </component>
 </project>
