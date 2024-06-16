@@ -26,7 +26,7 @@ class Dispatcher:
                 print(f"Result to send: {result}")
                 result.send()
                 return
-        result = Response(request.connection, response_code=404)
+        result = Response(request, response_code=404)
         result.send()
 
 def route(path):

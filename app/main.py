@@ -10,14 +10,17 @@ from app.web_server import WebServerApp
 
 @route("GET /")
 def root(request, *params):
-    response = Response(request.connection, response_code=200)
+    response = Response(request, response_code=200)
     return response
 
 
 @route('GET /echo/([a-zA-Z0-9]+)/?')
 def echo(request, *params):
     print(f"Starting /echo, {params=}")
-    response = Response(request.connection, response_code=200, headers={"Content-Type": "text/plain"}, body=params[0])
+    headers = {"Content-Type": "text/plain"}
+    if "accept-encoding" in request.headers and request.headers["accept-encoding"] == "gzip":
+        headers["Content-Encoding"] = request.headers["accept-encoding"]
+    response = Response(request, response_code=200, headers=headers, body=params[0])
     return response
 
 
@@ -25,7 +28,7 @@ def echo(request, *params):
 def user_agent(request, *params):
     agent = request.headers.get("user-agent")
     print(f"Starting /user-agent, {agent=}")
-    response = Response(request.connection, response_code=200, headers={"Content-Type": "text/plain"}, body=agent)
+    response = Response(request, response_code=200, headers={"Content-Type": "text/plain"}, body=agent)
     return response
 
 
@@ -39,12 +42,12 @@ def get_files(request, *params):
         if os.path.exists(path_to_file):
             with open(path_to_file, "rb") as f:
                 content = f.read()
-            response = Response(request.connection,
+            response = Response(request,
                                 response_code=200,
                                 headers={"Content-Type": "application/octet-stream",
                                          "Content-Length": len(content)}, body=content)
         else:
-            response = Response(request.connection, response_code=404)
+            response = Response(request, response_code=404)
     return response
 
 
@@ -58,7 +61,7 @@ def post_files(request, *params):
         body = request.body.encode("utf-8") if isinstance(request.body, str) else request.body
         with open(path_to_file, "wb") as f:
             f.write(body)
-        response = Response(request.connection,
+        response = Response(request,
                             response_code=201)
     return response
 
