@@ -8,13 +8,13 @@ from app.request import Request
 class WebServerApp:
     def __init__(
         self,
-        host: str = "localhost",
-        port: int = 4221,
+        host: str = None,
+        port: int = None,
         app_name: str = "WebServer",
         threads: int = 10,
     ):
-        self.host = host
-        self.port = port
+        self.host = host if host else "localhost"
+        self.port = port if port else 4221
         self.threads = threads
         self.app_name = app_name
 
@@ -29,9 +29,8 @@ class WebServerApp:
             ]
 
     def request_processor(self, server_socket):
-        print("Started")
         while True:
             connection, address = server_socket.accept()  # wait for client
-            print(f"Accept {connection=}, {address=}")
             request = Request(connection)
+            print(f"Accept connection from {address=} with {request.request_line}\nHeaders: {request.headers}")
             Dispatcher.dispatch(request)

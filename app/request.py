@@ -17,12 +17,10 @@ class Request:
             if "accept-encoding" in self.headers
             else []
         )
-        print(f"{self.accept_encoding}")
 
     def read_headers(self):
         headers = {}
         while header_line := self.rfile.readline()[:-1]:
-            print(f"{header_line=}")
             if ": " in header_line:
                 key, value = header_line.split(": ", maxsplit=1)
                 headers[key.lower()] = value

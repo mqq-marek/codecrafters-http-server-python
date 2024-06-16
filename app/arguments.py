@@ -8,7 +8,6 @@ def args():
     ap.add_argument(
         "-d", "--directory", type=str, required=False, help="web server home directory"
     )
-
     return vars(ap.parse_args())
 
 
