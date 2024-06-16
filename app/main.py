@@ -30,8 +30,8 @@ def user_agent(request, *params):
 
 
 @route(r'GET /files/([\-._a-zA-Z0-9]+)/?')
-def files(request, *params):
-    print(f"Starting /files, {params=}")
+def get_files(request, *params):
+    print(f"Starting GET /files, {params=}")
     folder = arguments.values["directory"]
     if params:
         file_name = params[0]
@@ -45,6 +45,21 @@ def files(request, *params):
                                          "Content-Length": len(content)}, body=content)
         else:
             response = Response(request.connection, response_code=404)
+    return response
+
+
+@route(r'POST /files/([\-._a-zA-Z0-9]+)/?')
+def post_files(request, *params):
+    print(f"Starting POST /files, {params=}")
+    folder = arguments.values["directory"]
+    if params:
+        file_name = params[0]
+        path_to_file = os.path.join(folder, file_name)
+        body = request.body.encode("utf-8") if isinstance(request.body, str) else request.body
+        with open(path_to_file, "wb") as f:
+            f.write(body)
+        response = Response(request.connection,
+                            response_code=201)
     return response
 
 

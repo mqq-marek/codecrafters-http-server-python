@@ -9,7 +9,7 @@ class Request:
         print(f"{self.request_line=}")
         self.cmd, self.path, self.query, self.version = self.parse_command()
         self.headers = self.read_headers()
-        self.body = self.rfile.read(int(self.headers.get("content-length",0)))
+        self.body = self.rfile.read(int(self.headers.get("content-length", 0)))
 
     def read_headers(self):
         headers = {}

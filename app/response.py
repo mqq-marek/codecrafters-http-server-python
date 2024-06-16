@@ -1,6 +1,6 @@
 from socket import socket
 
-responses = {200: "OK", 404: "Not Found", 503: "Service Unavailable"}
+responses = {200: "OK", 201: "Created", 404: "Not Found", 503: "Service Unavailable"}
 
 
 class Response:
